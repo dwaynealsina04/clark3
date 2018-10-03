@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+      
+  
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
+    </head>
+<style>
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url(3.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+}
+ 
+
+/* Add padding to containers */
+.container {
+    padding:40px;
+    
+    
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+    border: 5px solid yellow;
+    margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+    background-color: forestgreen;
+    color: white;
+ 
+    padding: 8px 10px;
+    margin: 8px 4px;
+    border: none;
+    border-radius: 44px
+    cursor: pointer;
+   
+    opacity: 0px;
+}
+           
+    
+.registerbtn:hover, .registerbtn:focus {
+    color: darkgreen;
+    background-color: yellow;
+    
+}
+
+/* Add a blue text color to links */
+a {
+    color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+   
+    text-align: center;
+}
+</style>
+ 
+<body>
+
+ 
+  <div class="container">
+    <h1><font color="Yellow">Register</font></h1>
+    <p><font color="Yellow">Please fill in this form to create an account.</font></p>
+    <hr>
+      
+      <label type="text"><font color="Yellow">Name</font></label>
+    <input type="text" placeholder="Enter Name"  id="name" required>
+       <label type="text"><font color="Yellow">Username</font></label>
+    <input type="text" placeholder="Enter Username"  id="uname" required>
+    <label for="psw"><font color="Yellow"> Password</font></label>
+    <input type="password" placeholder="Enter Password" id="psw" required>
+
+    <label for="psw-repeat"><b><font color="Yellow">Repeat Password</font></b></label>
+    <input type="password" placeholder="Repeat Password" id="psw-repeat" required>
+    <hr>
+ 
+    <button type="submit" class="registerbtn" onclick="reg()">Register</button>
+  </div>
+  
+  <div class="container">
+    <p><font color="Yellow">Already have an account?</font> 
+        <a href="#" onclick="location.href = file:///C:/Users/clark/Desktop/philadise/Web/file/Login%20-%20Copy/Login.html">Sign in</a>.</p>
+  </div>
+ 
+     <script>
+ // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAr_pJWlvXEUEySNCOzCE3TYFVzXHFILZs",
+    authDomain: "philadise-d976c.firebaseapp.com",
+    databaseURL: "https://philadise-d976c.firebaseio.com",
+    projectId: "philadise-d976c",
+    storageBucket: "philadise-d976c.appspot.com",
+    messagingSenderId: "7139434211"
+  };
+  firebase.initializeApp(config);
+</script>
+    
+    <script>
+ 
+              var db=firebase.firestore(); 
+    function reg()
+        {
+             
+            var name = document.getElementById("name");
+            var user = document.getElementById("uname");
+            var psw = document.getElementById("psw");
+            var pswrepeat = document.getElementById("psw-repeat");
+            
+            if(name.value === "" && user.value === "" && psw.value ==="" && pswrepeat.value === "")
+                {
+                    alert("Please complete all fields");
+                }
+            else{
+                
+       
+         db.collection('users').add({
+                        username: user.value,
+                        password: psw.value, 
+                        name:name.value  
+            
+            }).then(function(docRef) {
+   alert("Thanks! You can now login!");
+                location.href = 'file:///C:/Users/clark/Desktop/philadise/Web/file/Login%20-%20Copy/Login.html';
+});
+     
+                
+            }
+       
+        }
+    
+    </script>
+     
+</body>
+    
+   
+    
+    
+</html>
